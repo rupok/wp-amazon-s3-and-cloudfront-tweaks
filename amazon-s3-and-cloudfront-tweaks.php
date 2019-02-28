@@ -197,22 +197,13 @@ class Amazon_S3_and_CloudFront_Tweaks {
 	 *
 	 * @return array
 	 */
-	function allowed_mime_types( $types ) {
-		// Disallow offload of PDFs.
-		unset( $types['pdf'] );
-
-		// Allow offload of PDFs.
-		$types['pdf'] = 'application/pdf';
-
-		return $types;
-	}
 
     function allowed_mime_types( $types ) {
          // Allow offload of SVGs.
          $types['svg'] = 'image/svg+xmlapplication/octet-streamimage/x-svg+xml';
          return $types;
      } 
-     
+
 	/**
 	 * This filter allows the offload to the bucket to be aborted on a per attachment basis.
 	 *
