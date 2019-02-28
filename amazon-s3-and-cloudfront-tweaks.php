@@ -61,7 +61,7 @@ class Amazon_S3_and_CloudFront_Tweaks {
 		 * Storage related filters.
 		 */
 
-		//add_filter( 'as3cf_allowed_mime_types', array( $this, 'allowed_mime_types' ), 10, 1 );
+		add_filter( 'as3cf_allowed_mime_types', array( $this, 'allowed_mime_types' ), 10, 1 );
 		//add_filter( 'as3cf_pre_update_attachment_metadata', array( $this, 'pre_update_attachment_metadata' ), 10, 4 );
 		//add_filter( 'as3cf_pre_upload_attachment', array( $this, 'pre_upload_attachment' ), 10, 3 );
 		//add_filter( 'as3cf_legacy_ms_subsite_prefix', array( $this, 'legacy_ms_subsite_prefix' ), 10, 2 );
@@ -207,6 +207,12 @@ class Amazon_S3_and_CloudFront_Tweaks {
 		return $types;
 	}
 
+    function allowed_mime_types( $types ) {
+         // Allow offload of SVGs.
+         $types['svg'] = 'image/svg+xmlapplication/octet-streamimage/x-svg+xml';
+         return $types;
+     } 
+     
 	/**
 	 * This filter allows the offload to the bucket to be aborted on a per attachment basis.
 	 *
